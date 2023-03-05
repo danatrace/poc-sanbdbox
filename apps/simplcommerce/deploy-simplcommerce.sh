@@ -21,4 +21,14 @@ kubectl -n simplcommerce apply -f manifests/ingress/
 echo "The application is available in the following endpoints"
 kubectl get ing -n simplcommerce
 
+# Expose Easytravel via Loadbalancer (Eks aws)
+
+kubectl expose service simplcommerce --type=LoadBalancer --name=simplcommerce-loadbalancer --port=80 --target-port=80 -n simplcommerce
+
+# Get Loadbalancer address
+until kubectl get service/simplcommerce-loadbalancer -n simplcommerce --output=jsonpath='{.status.loadBalancer}' | grep "ingress"; do : ; done
+
+link=$(kubectl get services -n simplcommerce -o json | jq -r '.items[] | .status.loadBalancer?|.ingress[]?|.hostname')
+
+echo "link to simplcommerce application http://$link will be up in 5 minutes"
 
