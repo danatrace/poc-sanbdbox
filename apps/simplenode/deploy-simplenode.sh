@@ -19,3 +19,14 @@ kubectl -n simplenode apply -f manifests/ingress-gen.yaml
 
 echo "Simplnode is available here:"
 kubectl get ing -n simplenode
+
+# Expose Easytravel via Loadbalancer (Eks aws)
+
+kubectl expose service simplenode --type=LoadBalancer --name=simplenode-loadbalancer --port=80 --target-port=8080 -n simplenode
+
+# Get Loadbalancer address
+until kubectl get service/simplenode-loadbalancer -n simplenode --output=jsonpath='{.status.loadBalancer}' | grep "ingress"; do : ; done
+
+link=$(kubectl get services -n simplenode -o json | jq -r '.items[] | .status.loadBalancer?|.ingress[]?|.hostname')
+
+echo "link to simplenode application http://$link will be up in 5 minutes"
