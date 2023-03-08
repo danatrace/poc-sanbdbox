@@ -1,5 +1,7 @@
 #!/bin/bash
-
+echo "*************************************************************************************"
+echo "*                           Deploying Easytravel                                    *"
+echo "*************************************************************************************"
 # Read the domain from CM
 source ../util/loaddomain.sh
 
@@ -23,4 +25,15 @@ until kubectl get service/easytravel-loadbalancer -n easytravel --output=jsonpat
 
 easytravel=$(kubectl get services -n easytravel -o json | jq -r '.items[] | .status.loadBalancer?|.ingress[]?|.hostname')
 
-echo "link to easytravel application http://$easytravel will be up in 5 minutes"
+UP=$(curl --write-out %{http_code} --silent --output /dev/null http://$easytravel/)
+echo $UP
+while [[  $(($UP)) != 200 ]]
+do
+      echo "Waiting for Loadbalancer (Check again in 30 sec)"
+      UP=$(curl --write-out %{http_code} --silent --output /dev/null http://$easytravel/)
+      sleep 30
+done
+
+echo "****************************************************************************************************************************************************************************"
+echo "*               link to easytravel application http://$easytravel                                                                                                          *"
+echo "****************************************************************************************************************************************************************************"
