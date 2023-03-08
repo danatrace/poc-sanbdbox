@@ -26,7 +26,6 @@ until kubectl get service/easytravel-loadbalancer -n easytravel --output=jsonpat
 easytravel=$(kubectl get services -n easytravel -o json | jq -r '.items[] | .status.loadBalancer?|.ingress[]?|.hostname')
 
 UP=$(curl --write-out %{http_code} --silent --output /dev/null http://$easytravel/)
-echo $UP
 while [[  $(($UP)) != 200 ]]
 do
       echo "Waiting for Loadbalancer (Check again in 30 sec)"
