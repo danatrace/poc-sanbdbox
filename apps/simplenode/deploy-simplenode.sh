@@ -1,5 +1,7 @@
 #!/bin/bash
- 
+echo "*************************************************************************************"
+echo "*                           Deploying Simplenode                                    *"
+echo "*************************************************************************************"
 # Read the domain from CM
 source ../util/loaddomain.sh
 
@@ -29,4 +31,15 @@ until kubectl get service/simplenode-loadbalancer -n simplenode --output=jsonpat
 
 link=$(kubectl get services -n simplenode -o json | jq -r '.items[] | .status.loadBalancer?|.ingress[]?|.hostname')
 
-echo "link to simplenode application http://$link will be up in 5 minutes"
+UP=$(curl --write-out %{http_code} --silent --output /dev/null http://$link/)
+while [[  $(($UP)) != 200 ]]
+do
+      echo "Waiting for Loadbalancer (Check again in 30 sec)"
+      UP=$(curl --write-out %{http_code} --silent --output /dev/null http://$link)
+      sleep 30
+done
+
+echo "****************************************************************************************************************************************************************************"
+echo "*                         link to simplcommerce application http://$link will be up in 5 minutes                                                                           *"
+echo "****************************************************************************************************************************************************************************"
+
