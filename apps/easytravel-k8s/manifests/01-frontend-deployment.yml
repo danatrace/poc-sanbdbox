@@ -20,7 +20,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: frontend-config
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: easytravel-k8s
