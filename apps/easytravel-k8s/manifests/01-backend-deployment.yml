@@ -22,7 +22,7 @@ spec:
                 name: backend-config
             - secretRef:
                 name: backend-secret
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: easytravel-k8s
