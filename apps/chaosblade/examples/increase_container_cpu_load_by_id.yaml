@@ -14,7 +14,3 @@ spec:
       - "easytravel-frontend"
     - name: cpu-percent
       value: ["100"]
-      # pod names
-    - name: names
-      value: ["frontend-d89756ff7-pbnnc"]
-      # or use pod labels
