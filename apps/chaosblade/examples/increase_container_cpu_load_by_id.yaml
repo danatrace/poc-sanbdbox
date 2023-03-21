@@ -11,6 +11,6 @@ spec:
     matchers:
     - name: container-ids
       value:
-      - "easytravel-frontend"
+      - "xxx"
     - name: cpu-percent
       value: ["100"]
