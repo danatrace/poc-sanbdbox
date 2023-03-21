@@ -11,7 +11,7 @@ spec:
     matchers:
     - name: names
       value:
-      - "ip-192-168-45-148.ec2.internal"
+      - "xxx"
     - name: cpu-percent
       value:
       - "80"
