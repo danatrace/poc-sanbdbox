@@ -14,3 +14,7 @@ spec:
       - "xxx"
     - name: cpu-percent
       value: ["100"]
+      # pod names
+    - name: names
+      value: ["yyy"]
+      # or use pod labels 
