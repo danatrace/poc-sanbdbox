@@ -29,7 +29,7 @@ UP=$(curl --write-out %{http_code} --silent --output /dev/null http://$easytrave
 while [[  $(($UP)) != 200 ]]
 do
       echo "Waiting for Loadbalancer (Check again in 30 sec)"
-      UP=$(curl --write-out %{http_code} --silent --output /dev/null http://$easytravel/)
+      UP=$(curl --write-out %{http_code} --silent --output /dev/null https://$easytravel/)
       sleep 30
 done
 
