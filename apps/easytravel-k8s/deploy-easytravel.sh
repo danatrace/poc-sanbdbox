@@ -18,7 +18,7 @@ kubectl get ing -n easytravel
 
 # Expose Easytravel via Loadbalancer (Eks aws)
 
-kubectl expose service easytravel-www --type=LoadBalancer --name=easytravel-loadbalancer --port=443 --target-port=80 -n easytravel
+kubectl expose service easytravel-www --type=LoadBalancer --name=easytravel-loadbalancer --port=80 --target-port=80 -n easytravel
 
 # Get Loadbalancer address
 until kubectl get service/easytravel-loadbalancer -n easytravel --output=jsonpath='{.status.loadBalancer}' | grep "ingress"; do : ; done
@@ -29,7 +29,7 @@ UP=$(curl --write-out %{http_code} --silent --output /dev/null http://$easytrave
 while [[  $(($UP)) != 200 ]]
 do
       echo "Waiting for Loadbalancer (Check again in 30 sec)"
-      UP=$(curl --write-out %{http_code} --silent --output /dev/null https://$easytravel/)
+      UP=$(curl --write-out %{http_code} --silent --output /dev/null http://$easytravel/)
       sleep 30
 done
 
