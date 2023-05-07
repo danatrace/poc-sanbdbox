@@ -9,4 +9,4 @@ data:
   ET_APM_SERVER_DEFAULT: "APM"
   ET_FRONTEND_URL: "http://easytravel-www:80"
   ET_BACKEND_URL: "easytravel-www:80"
-  ET_PROBLEMS: ""
+  ET_PROBLEMS: "none"
