@@ -1,27 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: www
+  name: loadgen
   labels:
     app: easytravel-k8s
-    type: www
+    type: loadgen
 spec:
   template:
     metadata:
       labels:
         app: easytravel-k8s
-        type: www-pod
+        type: loadgen-pod
     spec:
       containers:
-        - name: www
-          image: shinojosa/easytravel-nginx
-          ports:
-            - containerPort: 80
+        - name: easytravel-loadgen
+          image: shinojosa/easytravel-loadgen
           envFrom:
             - configMapRef:
-                name: www-config
-  replicas: 3
+                name: loadgen-config
+  replicas: 1
   selector:
     matchLabels:
       app: easytravel-k8s
-      type: www-pod
+      type: loadgen-pod
