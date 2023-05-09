@@ -3,7 +3,7 @@ echo "**************************************************************************
 echo "*                           Deploying Bobbleneers                                   *"
 echo "*************************************************************************************"
 
-sed 's~url~'"$DTURL"'~' manifest/ingress.template > manifest/ingress.templatex
+sed 's~url~'"$DTURL"'~' manifest/bobb.template > manifest/ingress.templatex
 sed 's~dttoken~'"$DTOKEN"'~' manifest/ingress.templatex > manifest/bobb.yml
 
 kubectl apply -f manifest/bobb.yml
