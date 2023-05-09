@@ -3,10 +3,10 @@ echo "**************************************************************************
 echo "*                           Deploying Bobbleneers                                   *"
 echo "*************************************************************************************"
 
-sed 's~url~'"$DTURL"'~' manifests/ingress.template > manifests/ingress.templatex
-sed 's~dttoken~'"$DTOKEN"'~' manifests/ingress.templatex > manifests/bobb.yml
+sed 's~url~'"$DTURL"'~' manifest/ingress.template > manifest/ingress.templatex
+sed 's~dttoken~'"$DTOKEN"'~' manifest/ingress.templatex > manifest/bobb.yml
 
-kubectl apply -f manifests/bobb.yml
+kubectl apply -f manifest/bobb.yml
 
 
 echo "****************************************************************************************************************************************************************************"
