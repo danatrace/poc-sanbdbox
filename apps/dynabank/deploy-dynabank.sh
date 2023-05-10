@@ -3,9 +3,9 @@ echo "**************************************************************************
 echo "*                           Deploying Dynabank                                *"
 echo "*************************************************************************************"
 
-curl https://raw.githubusercontent.com/suchcodewow/dbic/main/deploy/dbic.yaml > ~/dbic.yaml
-kubectl apply -f ~/dbic.yaml
-
+#curl https://raw.githubusercontent.com/suchcodewow/dbic/main/deploy/dbic.yaml > ~/dbic.yaml
+#kubectl apply -f ~/dbic.yaml
+kubectl apply -f manifests/
 
 
 echo "****************************************************************************************************************************************************************************"
