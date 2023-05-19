@@ -32,7 +32,7 @@ do
       UP=$(curl --write-out %{http_code} --silent --output /dev/null http://$easytravel/)
       sleep 30
 done
-aws elb add-tags --load-balancer-name ${easytravel%%-*} --tag "Key=tenant,Value=${tenantname}"
+#aws elb add-tags --load-balancer-name ${easytravel%%-*} --tag "Key=tenant,Value=${tenantname}"
 
 echo "****************************************************************************************************************************************************************************"
 echo "                link to easytravel application http://$easytravel                                                                                                           "
