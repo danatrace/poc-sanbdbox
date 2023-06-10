@@ -19,7 +19,7 @@ kubectl get ing -n easytravel
 # Expose Easytravel via Loadbalancer (Eks aws)
 
 # Get Loadbalancer address
-until kubectl get service/easytravel-loadbalancer -n easytravel --output=jsonpath='{.status.loadBalancer}' | grep "ingress"; do : ; done
+until kubectl get service/easytravel-lb -n easytravel --output=jsonpath='{.status.loadBalancer}' | grep "ingress"; do : ; done
 
 easytravel=$(kubectl get services -n easytravel -o json | jq -r '.items[] | .status.loadBalancer?|.ingress[]?|.hostname')
 
