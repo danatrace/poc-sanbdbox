@@ -23,7 +23,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: mongodb-config
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: easytravel-k8s
